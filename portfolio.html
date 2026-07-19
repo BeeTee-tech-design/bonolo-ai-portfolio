@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Built by Bonolo Nicole Tatai — AI Assistants for Local Businesses</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#12213A;
+    --ink-soft:#2A3B57;
+    --paper:#F7F5F0;
+    --paper-dim:#EDEAE2;
+    --gold:#C9A15D;
+    --line:#D9D4C7;
+    --salon:#B85C7A;
+    --realestate:#4A7B6F;
+    --gym:#B0562F;
+    --dental:#3E6E8E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.01em;}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+
+  header{padding:64px 0 40px; border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-size:13px; text-transform:uppercase; letter-spacing:0.12em;
+    color:var(--ink-soft); margin-bottom:14px; font-weight:600;
+  }
+  header h1{font-size:clamp(32px,5vw,52px); max-width:720px; line-height:1.08;}
+  header p{margin-top:18px; max-width:560px; font-size:17px; color:var(--ink-soft);}
+
+  .stats{display:flex; gap:36px; margin-top:32px; flex-wrap:wrap;}
+  .stat b{font-family:'Fraunces',serif; font-size:26px; display:block;}
+  .stat span{font-size:13px; color:var(--ink-soft);}
+
+  section.demos{padding:56px 0 80px;}
+  section.demos > h2{font-size:28px; margin-bottom:8px;}
+  section.demos > p.lede{color:var(--ink-soft); max-width:600px; margin-bottom:36px; font-size:15px;}
+
+  .tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;}
+  .tab{
+    padding:10px 18px; border-radius:999px; border:1px solid var(--line);
+    background:var(--paper); font-size:14px; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; gap:8px; color:var(--ink-soft);
+    transition:all .15s ease;
+  }
+  .tab .dot{width:8px;height:8px;border-radius:50%;}
+  .tab.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .tab:hover{border-color:var(--ink);}
+
+  .panel{display:none; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff;}
+  .panel.active{display:grid; grid-template-columns:1fr 1.15fr;}
+  @media(max-width:760px){ .panel.active{grid-template-columns:1fr;} }
+
+  .panel-info{padding:32px; background:var(--paper-dim);}
+  .panel-info .tag{
+    display:inline-block; font-size:12px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; padding:5px 10px; border-radius:5px; color:#fff; margin-bottom:14px;
+  }
+  .panel-info h3{font-size:22px; margin-bottom:10px;}
+  .panel-info p{font-size:14.5px; color:var(--ink-soft); margin-bottom:16px;}
+  .panel-info ul{list-style:none; font-size:13.5px; color:var(--ink-soft);}
+  .panel-info li{padding-left:18px; position:relative; margin-bottom:8px;}
+  .panel-info li:before{content:"→"; position:absolute; left:0; opacity:.6;}
+
+  .chat{display:flex; flex-direction:column; height:520px; border-left:1px solid var(--line);}
+  .chat-head{padding:16px 20px; border-bottom:1px solid var(--line); font-size:14px; font-weight:600; display:flex; align-items:center; gap:10px;}
+  .chat-head .avatar{width:28px;height:28px;border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:700;}
+  .chat-body{flex:1; overflow-y:auto; padding:18px 20px; display:flex; flex-direction:column; gap:12px;}
+  .msg{max-width:80%; padding:10px 14px; border-radius:14px; font-size:14.5px; line-height:1.45;}
+  .msg.bot{background:var(--paper-dim); align-self:flex-start; border-bottom-left-radius:4px;}
+  .msg.user{background:var(--ink); color:#fff; align-self:flex-end; border-bottom-right-radius:4px;}
+  .msg.typing{color:var(--ink-soft); font-style:italic;}
+  .chat-input{display:flex; gap:8px; padding:14px; border-top:1px solid var(--line);}
+  .chat-input input{
+    flex:1; border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+    font-family:inherit; font-size:14px; outline:none;
+  }
+  .chat-input input:focus{border-color:var(--ink);}
+  .chat-input button{
+    border:none; background:var(--ink); color:#fff; padding:0 18px; border-radius:10px;
+    font-weight:600; cursor:pointer; font-size:14px;
+  }
+  .chat-input button:disabled{opacity:.5; cursor:default;}
+
+  footer{padding:40px 0 60px; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI Assistants for Local Businesses</div>
+    <h1>I build chatbots that catch the customers you'd otherwise miss.</h1>
+    <p>I'm Bonolo Nicole Tatai, an ICT student building practical, done-for-you AI assistants for small service businesses — booking, FAQs, and lead capture, live 24/7. Below are four working examples. Try one.</p>
+    <div class="stats">
+      <div class="stat"><b>4</b><span>live demo bots</span></div>
+      <div class="stat"><b>&lt;5 min</b><span>typical setup on your site or WhatsApp</span></div>
+      <div class="stat"><b>24/7</b><span>never misses an after-hours enquiry</span></div>
+    </div>
+  </header>
+
+  <section class="demos">
+    <h2>Try a live demo</h2>
+    <p class="lede">These are real, working assistants — not screenshots. Pick an industry and start chatting.</p>
+
+    <div class="tabs">
+      <div class="tab active" data-panel="salon"><span class="dot" style="background:var(--salon)"></span>Hair &amp; Beauty Salon</div>
+      <div class="tab" data-panel="realestate"><span class="dot" style="background:var(--realestate)"></span>Real Estate</div>
+      <div class="tab" data-panel="gym"><span class="dot" style="background:var(--gym)"></span>Gym / Fitness</div>
+      <div class="tab" data-panel="dental"><span class="dot" style="background:var(--dental)"></span>Dental Clinic</div>
+    </div>
+
+    <div class="panel active" id="panel-salon">
+      <div class="panel-info">
+        <span class="tag" style="background:var(--salon)">Salon</span>
+        <h3>Bloom Hair Studio</h3>
+        <p>Books appointments, answers pricing/service questions, and captures the enquiry when it's outside opening hours — instead of the client messaging a competitor instead.</p>
+        <ul>
+          <li>Answers service &amp; pricing questions</li>
+          <li>Suggests appointment times</li>
+          <li>Captures name + number for follow-up</li>
+        </ul>
+      </div>
+      <div class="chat">
+        <div class="chat-head"><div class="avatar" style="background:var(--salon)">B</div>Bloom Hair Studio Assistant</div>
+        <div class="chat-body" id="body-salon"></div>
+        <div class="chat-input">
+          <input type="text" id="input-salon" placeholder="Ask about a haircut, colour, or booking...">
+          <button onclick="send('salon')">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-realestate">
+      <div class="panel-info">
+        <span class="tag" style="background:var(--realestate)">Real Estate</span>
+        <h3>Karoo &amp; Co. Properties</h3>
+        <p>Qualifies leads on listings, answers viewing-time questions, and collects buyer/renter details so the agent can follow up with warm leads instead of cold ones.</p>
+        <ul>
+          <li>Answers questions about listings</li>
+          <li>Books viewing slots</li>
+          <li>Captures budget &amp; contact info</li>
+        </ul>
+      </div>
+      <div class="chat">
+        <div class="chat-head"><div class="avatar" style="background:var(--realestate)">K</div>Karoo &amp; Co. Assistant</div>
+        <div class="chat-body" id="body-realestate"></div>
+        <div class="chat-input">
+          <input type="text" id="input-realestate" placeholder="Ask about a listing or viewing...">
+          <button onclick="send('realestate')">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-gym">
+      <div class="panel-info">
+        <span class="tag" style="background:var(--gym)">Gym</span>
+        <h3>Iron Circle Fitness</h3>
+        <p>Handles membership questions, class schedules, and trial sign-ups — the questions that come in at 9pm when nobody's at the front desk.</p>
+        <ul>
+          <li>Explains membership tiers</li>
+          <li>Shares class schedule</li>
+          <li>Books a free trial session</li>
+        </ul>
+      </div>
+      <div class="chat">
+        <div class="chat-head"><div class="avatar" style="background:var(--gym)">I</div>Iron Circle Assistant</div>
+        <div class="chat-body" id="body-gym"></div>
+        <div class="chat-input">
+          <input type="text" id="input-gym" placeholder="Ask about membership or classes...">
+          <button onclick="send('gym')">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-dental">
+      <div class="panel-info">
+        <span class="tag" style="background:var(--dental)">Dental</span>
+        <h3>Riverside Dental Clinic</h3>
+        <p>Handles appointment requests, basic procedure questions, and emergency triage guidance — routing urgent cases to call in immediately.</p>
+        <ul>
+          <li>Books/reschedules appointments</li>
+          <li>Answers common procedure questions</li>
+          <li>Flags emergencies to call in directly</li>
+        </ul>
+      </div>
+      <div class="chat">
+        <div class="chat-head"><div class="avatar" style="background:var(--dental)">R</div>Riverside Dental Assistant</div>
+        <div class="chat-body" id="body-dental"></div>
+        <div class="chat-input">
+          <input type="text" id="input-dental" placeholder="Ask about an appointment or procedure...">
+          <button onclick="send('dental')">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built by Bonolo Nicole Tatai · ICT student · Custom AI assistants for local service businesses, set up in days, not weeks.<br>
+    Get in touch: <a href="mailto:tataibonolo@gmail.com" style="color:var(--ink); font-weight:600;">tataibonolo@gmail.com</a>
+  </footer>
+</div>
+
+<script>
+const systemPrompts = {
+  salon: "You are the booking assistant for Bloom Hair Studio, a hair and beauty salon. Services: Cut & Style (R250), Colour (R550+), Braids (R400+), Blowout (R180). Open Tue-Sat 9am-6pm. Be warm, brief, and helpful. If it's outside hours or you can't confirm a slot, collect their name and number and say the studio will confirm shortly. Keep replies under 3 sentences.",
+  realestate: "You are the leasing/sales assistant for Karoo & Co. Properties. You have listings: a 2-bed apartment in Rosebank (R14,500/month), a 3-bed house in Melville (R2.4m), a 1-bed studio in Braamfontein (R7,800/month). Answer questions about these, offer to book a viewing, and collect name, contact number, and budget if they're interested. Keep replies under 3 sentences.",
+  gym: "You are the membership assistant for Iron Circle Fitness. Memberships: Basic R399/month (gym floor only), Plus R599/month (+classes), Premium R899/month (+personal training session/month). Classes: Spin (Mon/Wed 6am), HIIT (Tue/Thu 6pm), Yoga (Sat 9am). Offer a free trial day to interested people and collect their name and number. Keep replies under 3 sentences.",
+  dental: "You are the front-desk assistant for Riverside Dental Clinic. Services: Check-up & clean (R650), Filling (R900+), Whitening (R1800). Open Mon-Fri 8am-5pm. If someone describes severe pain, swelling, or trauma, tell them to call the clinic directly right away rather than book online. Otherwise offer to book an appointment and collect name and number. Keep replies under 3 sentences."
+};
+
+const greetings = {
+  salon: "Hi! Welcome to Bloom Hair Studio 💇 — are you looking to book something, or just have a question about our services?",
+  realestate: "Hi there, thanks for reaching out to Karoo & Co. Properties! Are you looking to buy or rent, and what area are you interested in?",
+  gym: "Hey! Welcome to Iron Circle Fitness 💪 — are you looking to join, or just checking out class times?",
+  dental: "Hello, welcome to Riverside Dental Clinic. Are you looking to book an appointment, or do you have a quick question first?"
+};
+
+const histories = {};
+
+function initPanel(key){
+  histories[key] = [];
+  const body = document.getElementById('body-'+key);
+  body.innerHTML = '';
+  addMsg(key, 'bot', greetings[key]);
+}
+
+function addMsg(key, role, text){
+  const body = document.getElementById('body-'+key);
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+  return div;
+}
+
+async function send(key){
+  const input = document.getElementById('input-'+key);
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  addMsg(key, 'user', text);
+  histories[key].push({role:'user', content:text});
+
+  const btn = document.querySelector(`#panel-${key} .chat-input button`);
+  btn.disabled = true;
+  const typingEl = addMsg(key, 'bot typing', 'typing...');
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 300,
+        system: systemPrompts[key],
+        messages: histories[key]
+      })
+    });
+    const data = await response.json();
+    const reply = (data.content && data.content.find(c => c.type === 'text')) ? data.content.find(c => c.type === 'text').text : "Sorry, I'm having trouble connecting right now — please try again.";
+    typingEl.remove();
+    addMsg(key, 'bot', reply);
+    histories[key].push({role:'assistant', content:reply});
+  }catch(e){
+    typingEl.remove();
+    addMsg(key, 'bot', "Sorry, something went wrong. Please try again in a moment.");
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+document.querySelectorAll('#\\31 .chat-input input').forEach(()=>{});
+document.querySelectorAll('.chat-input input').forEach(inp=>{
+  inp.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){
+      const key = inp.id.replace('input-','');
+      send(key);
+    }
+  });
+});
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.panel).classList.add('active');
+  });
+});
+
+['salon','realestate','gym','dental'].forEach(initPanel);
+</script>
+
+</body>
+</html>
